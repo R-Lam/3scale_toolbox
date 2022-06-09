@@ -6,13 +6,17 @@ RSpec.describe ThreeScaleToolbox::Commands::MappingRulesCommand::List::ListSubco
   let(:options) { {} }
   let(:arguments) do
     {
-      service_ref: 'someservice', remote: 'https://destination_key@destination.example.com'
+      remote: 'https://destination_key@destination.example.com', service_ref: 'someservice'
     }
   end
   
   subject { described_class.new(options, arguments, nil) }
   
   context '#run' do
+    before :example do
+      expect(service_class).to receive(:find).and_return(service)
+      expect(subject).to receive(:threescale_client).and_return(remote)
+    end
     context 'when service not found' do
       let(:service) { nil }
 

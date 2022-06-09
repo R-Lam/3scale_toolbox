@@ -15,8 +15,8 @@ module ThreeScaleToolbox
               description 'List mapping rules'
 
               ThreeScaleToolbox::CLI.output_flag(self)
-              param       :service_ref
               param       :remote
+              param       :service_ref
 
               runner ListSubcommand
             end
